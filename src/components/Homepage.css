@@ -1,0 +1,37 @@
+#root {
+  margin: 0 auto;
+  padding: 0rem;
+  width: 100vw;
+  height: 100vh;
+}
+
+.header {
+  width: 100%;
+
+  display: flex;
+
+}
+.siteTitle {
+  margin: 20px 50px;
+}
+
+nav {
+  width: 100%;
+  background-color: black;
+  border-radius: 32px;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+}
+
+.navItem {
+  all: unset;
+  font-size: 28px;
+  color: white;
+}
+
+li {
+  list-style: none;
+}

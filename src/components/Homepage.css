@@ -35,3 +35,58 @@ nav {
 li {
   list-style: none;
 }
+
+.shop {
+  margin: 0px 40px;
+  border: 4px solid;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.preview {
+  width: 800px;
+  height: auto;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10px 20px;
+  padding: 0px 40px;
+  border: 4px solid;
+}
+
+.product {
+  width: 600px;
+  height: auto;
+  display: flex;
+  margin: 20px 40px;
+  border: 4px solid;
+}
+
+.product-info {
+  width: 100%;
+  height: 100%;
+  margin: 0px 20px;
+  padding: 0px 20px;
+  
+  display: flex;
+  flex-flow: column;
+
+}
+
+.cart {
+  align-self: center;
+  display: flex;
+
+  justify-content: center;
+}
+
+img {
+  max-width: 400px;
+  max-height: 400px;
+  width: 20%;
+  height: auto;
+}

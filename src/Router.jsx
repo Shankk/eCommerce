@@ -14,6 +14,13 @@ const Router = () => {
       element: <Homepage />,
       errorElement: <ErrorPage />,
     },
+    {
+      //This is the product preview page so customer can
+      //inspect the product and choose to add item to cart.
+      path: "/:name/:product",
+      element: <Homepage />,
+      errorElement: <ErrorPage />,
+    },
   ]);
 
   return <RouterProvider router={router} />;

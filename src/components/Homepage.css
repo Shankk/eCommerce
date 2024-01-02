@@ -9,7 +9,7 @@
   width: 100%;
 
   display: flex;
-
+  
 }
 .siteTitle {
   margin: 20px 50px;
@@ -44,8 +44,34 @@ li {
   justify-content: space-evenly;
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  justify-content: space-evenly;
+  margin: 16px;
+  gap: 32px;
+}
+
+.searchSection {
+  margin: 24px 8px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.search {
+  min-width: 400px;
+  min-height: 30px;
+  width: 40%;
+  height: auto;
+}
+
 .preview {
-  width: 800px;
+  width: 100%;
   height: auto;
 
   display: flex;
@@ -53,9 +79,7 @@ li {
   justify-content: center;
   align-items: center;
 
-  margin: 10px 20px;
-  padding: 0px 40px;
-  border: 4px solid;
+  border: 2px solid;
 }
 
 .product {

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -31,7 +32,8 @@ PreviewCard.defaultProps = {
 }
 
 function ProductCard({title, price, description, image , addToCart}) {
-    
+    const [quantity, setQuantity] = useState(1)
+
     return (
         <div className="product">
             <img src={image} alt="product image" />
@@ -39,7 +41,9 @@ function ProductCard({title, price, description, image , addToCart}) {
                 <p>{title}</p>
                 <p>{description}</p>
                 <p>${price}</p>
-                <button onClick={addToCart}>Add to Cart</button>
+                <span>Quantity<input type="number" placeholder='1' min={1} max={10} value={quantity}
+                onChange={(event) => setQuantity(event.target.value)}/></span>
+                <button onClick={() => addToCart(quantity)}>Add to Cart</button>
             </div>
         </div>
     );
@@ -60,4 +64,36 @@ ProductCard.defaultProps = {
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
 }
 
-export {ProductCard, PreviewCard};
+function CartCard({title, price, description, image, children, remove}) {
+
+    return (
+        <div className="product">
+            <img src={image} alt="product image" />
+            <div className="product-info">
+                <p>{title}</p>
+                <p>{description}</p>
+                <p>${price}</p>
+                {children}
+                <button onClick={remove}>Remove</button>
+            </div>
+        </div>
+    );
+}
+  
+CartCard.propTypes = {
+    title: PropTypes.string,
+    price: PropTypes.number,
+    description: PropTypes.string,
+    image: PropTypes.string,
+    children: PropTypes.node,
+    remove: PropTypes.func
+}
+
+CartCard.defaultProps = {
+    title: 'Leather Backpack',
+    price: 69.99,
+    description: 'A Leather Backpack to Store all your valuables',
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+}
+
+export {ProductCard, PreviewCard, CartCard};

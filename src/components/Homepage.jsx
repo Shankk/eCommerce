@@ -9,16 +9,32 @@ import { useState } from "react";
 function Homepage() {
     const { name } = useParams();
     const { product } = useParams();
-    const testItemOne = {title:"Mens Casual Premium Slim Fit T-Shirts", price: 22.3 , 
-    description: 'Slim-fitting style, contrast raglan long sleeve, three-button henley placket',
-    image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"}
-    const testItemTwo = {title: 'Leather Backpack', price: 69.99,
+    const testItemTwo = {title: 'Leather Backpack', price: 69.99, quantity:1,
     description: 'A Leather Backpack to Store all your valuables',
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"}
-    const testItemThree = {title: "Mens Cotton Jacket", price: 55.99,
-        description:"great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
-        image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"}
-    const [productList, setProductList] = useState([testItemOne, testItemTwo, testItemThree]);
+    const [productList, setProductList] = useState([]);
+    const [cartList, setCartList] = useState([])
+
+    function FetchStoreProducts() {
+        fetch('https://fakestoreapi.com/products')
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(response) {
+                //console.log(response)
+                let array = []
+                for (let index = 0; index < response.length; index++) {
+                    const element = {title:response[index].title, price: response[index].price, quantity:1,
+                    description:response[index].description, image:response[index].image};
+                    array.push(element)
+                }
+                setProductList(array)
+            })
+    }
+
+    if(productList.length == 0) {
+        FetchStoreProducts()
+    }
 
     //console.log("Reload")
     return (
@@ -36,9 +52,9 @@ function Homepage() {
                 <hr />
                 <h2>The Shop visited is here:</h2>
                 {name === "shop" ? (
-                    <Shop cartList={productList} product={product}/>
+                    <Shop cartList={cartList} setCartList={setCartList} productList={productList} product={product}/>
                 ) : name === "cart" ? (
-                    <Cart cartList={productList} />
+                    <Cart cartList={cartList} setCartList={setCartList} />
                 ) : (
                     <Default />
                 )}

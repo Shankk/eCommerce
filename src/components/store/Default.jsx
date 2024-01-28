@@ -35,7 +35,7 @@ function Default({productList}) {
         <>
             <div className="category-container">
                 <div className="product-line-header">
-                    <Link className="nav-product-button" to="/shop/men's clothing">BESTSELLERS</Link>
+                    <Link className="nav-product-button" to="/shop/all">BESTSELLERS</Link>
                     <div></div>
                 </div>
                 <div className="product-line" ref={containerRef}>

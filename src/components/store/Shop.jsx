@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {PreviewCard, ProductCard} from "./Product";
 import { Dropdown } from "./Utility";
 import { useState } from "react";
+import 'src/components/style/Shop.css'
 
 function Shop({cartList, setCartList, productList, product, category}) {
   let foundProduct = {}

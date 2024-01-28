@@ -1,0 +1,53 @@
+.cart {
+    width: 95%;
+    height: 100%;
+  
+    align-self: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .items {
+    background-color: white;
+    padding: 0px 24px;
+    flex: 3;
+  }
+  
+  .checkout {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  
+    background-color: whitesmoke;
+    padding: 0px 8px;
+    padding-bottom: 8px;
+    gap: 4px;
+  }
+  
+  .checkout > div {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .checkout > button {
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+  }
+  .checkout > button > div {
+    width: 0%;
+    transition: all 0.5s;
+    border: 1px solid black;
+  }
+  .checkout > button:hover > div {
+    width: 100%;
+    border: 1px solid white;
+  }

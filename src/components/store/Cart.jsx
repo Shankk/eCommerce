@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import {CartCard} from './Product';
+import 'src/components/style/Cart.css'
 
 const Cart = ({cartList, setCartList}) => {
   const [totalCost, setTotalCost] = useState(0)

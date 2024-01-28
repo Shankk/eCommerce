@@ -1,0 +1,52 @@
+.shop {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .searchSection {
+    width: 90%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0px;
+    flex: 1;
+  }
+  
+  .search {
+    min-width: 300px;
+    min-height: 30px;
+    width: 100%;
+    height: auto;
+  
+    font-size: 18px;
+    border-radius: 32px;
+    text-align: start;
+    padding: 0px 12px;
+  }
+  
+  .filters {
+    display: flex;
+    flex-flow: column nowrap;
+  
+    gap: 20px;
+  }
+  
+  label {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .layout {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0px 64px;
+    flex: 2;
+  }

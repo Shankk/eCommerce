@@ -1,31 +1,36 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
 import {PreviewCard, ProductCard} from "./Product";
-import { Dropdown } from "./Dropdown";
+import { Dropdown } from "./Utility";
 import { useState } from "react";
 
-function Shop({cartList, setCartList, productList, product}) {
+function Shop({cartList, setCartList, productList, product, category}) {
   let foundProduct = {}
-
-  const [searchVal, setSearchVal] = useState("")
-  const [filterVal, setFilterVal] = useState("high")
-
-  const handleSearch = (event) => {
-    setSearchVal(event.target.value)
-  }
-  const handleFilter = (event) => {
-    setFilterVal(event.target.value)
-  }
- 
+  const navigate = useNavigate();
+  const [searchVal, setSearch] = useState("")
+  const [filterVal, setFilter] = useState("")
+  const [categoryVal, setCategory] = useState(category)
+  const handleSearch = (event) => {setSearch(event.target.value)}
+  const handleFilter = (event) => {setFilter(event.target.value)}
+  const handleCategory = (event) => {navigate("/shop/" + event.target.value)}
+  
   const options = [
+    {label:"N/A", value:""},
     {label:"High-Low", value:"high"},
     {label:"Low-High", value:"low"},
     {label:"A-Z", value:"ascending"},
     {label:"Z-A", value:"descending"}
   ]
+  const categorys = [
+    {label:"N/A", value:"all"},
+    {label:"Mens", value:"men's clothing"},
+    {label:"Womens", value:"women's clothing"},
+    {label:"Jewelery", value:"jewelery"},
+    /* {label:"Electronics", value:"electronics"} */
+  ]
 
-  function SortPrice(array) {
-    let temp = new Float64Array(array)
-    console.log(temp)
+  function PreviewItem(i,category,title,price,description,image) {
+    return <PreviewCard key={i} category={category} title={title} price={price} description={description} image={image}></PreviewCard>
   }
 
   const SearchForProduct = () => {
@@ -65,38 +70,47 @@ function Shop({cartList, setCartList, productList, product}) {
 
   const ShowProductList = () => {
     return productList.length > 0 && productList.map((item,i) =>{
-      /* if(filterVal == "high") {
-        
-      } */
-      if(searchVal != ""){
-        let tempTitle = item.title.toLocaleLowerCase('en-US')
-        return tempTitle.includes(searchVal.toLocaleLowerCase('en-US')) && <PreviewCard key={i} title={item.title} price={item.price} description={item.description} image={item.image}></PreviewCard>
+      let tempTitle = item.title.toLocaleLowerCase('en-US')
+
+      //If caterogry is not empty and search val is not empty
+      if(categoryVal != "all") {
+        //push all category items in list
+        if(tempTitle.includes(searchVal.toLocaleLowerCase('en-US')) && item.category.startsWith(categoryVal.toLocaleLowerCase('en-US'))) {
+          return PreviewItem(i,item.category,item.title,item.price,item.description,item.image)
+        }
       }
-      else return <PreviewCard key={i} title={item.title} price={item.price} description={item.description} image={item.image}></PreviewCard>
+      else if(searchVal != ""){
+        let tempTitle = item.title.toLocaleLowerCase('en-US')
+        return tempTitle.includes(searchVal.toLocaleLowerCase('en-US')) && PreviewItem(i,item.category,item.title,item.price,item.description,item.image)
+      }
+      else return PreviewItem(i,item.category,item.title,item.price,item.description,item.image)
     }) 
-    
 
   }
 
+  //Trigger Category changes.
+  if(categoryVal != category){
+    setCategory(category)
+  }
+
   return (
-    <div>
-      
+    <>
       {SearchForProduct()  ? (
-        <div>
-          <ProductCard title={foundProduct.title} price={foundProduct.price}
-          description={foundProduct.description} image={foundProduct.image} 
-          addToCart={AddProductToCart}></ProductCard>
-        </div>
+        
+        <ProductCard category={foundProduct.category} title={foundProduct.title} price={foundProduct.price}
+        description={foundProduct.description} image={foundProduct.image} 
+        addToCart={AddProductToCart}></ProductCard>
+        
       ) : (
         
         //Default Shop
         
         <div className="shop">
           <div className="searchSection">
-            <p>Search</p>
             <input className="search" type="text" placeholder="Search Product..." value={searchVal} onChange={handleSearch}/>
-            <div>
+            <div className="filters">
               <Dropdown label={"Filter"} options={options} value={filterVal} onChange={handleFilter}></Dropdown>
+              <Dropdown label={"Category"} options={categorys} value={categoryVal} onChange={handleCategory}></Dropdown>
             </div>
           </div>
           <div className="layout">
@@ -104,7 +118,7 @@ function Shop({cartList, setCartList, productList, product}) {
           </div>
         </div>
       )}
-    </div>
+    </>
 
   )
 }

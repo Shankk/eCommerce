@@ -49,18 +49,43 @@ const Cart = ({cartList, setCartList}) => {
 
   return (
     <div className='cart'>
-      <div>
-        <p>Your Shopping Cart...</p>
+      <div className='items'>
+        <h3>Your Cart</h3>
         {cartList.length > 0 && cartList.map((item,i) =>{
-          return <CartCard key={i} title={item.title} price={item.price} description={item.description}
-            image={item.image} itemRef={item} remove={() => RemoveFromCart(item)}>
-              <span>Quantity<input type="number" min={1} max={10} value={item.quantity} onChange={(event) => UpdateQuantity(item,event.target.value)}/></span>
-          </CartCard>
+          return (
+            <>
+              <CartCard key={i} title={item.title} price={item.price} image={item.image} amount={item.quantity}
+              update={(quantity) => UpdateQuantity(item,quantity)} remove={() => RemoveFromCart(item)}>   
+              </CartCard>
+              <hr />
+            </>
+          )
         })}
       </div>
-      <div>
-        <p>Subtotal ({totalQuantity} items): ${totalCost}</p>
-        <button>Proceed to Checkout</button>
+      <div className='checkout'>
+        <div>
+          <h2>Order Summary</h2>
+          <p>$CAD</p>
+        </div>
+        <div>
+          <p>Subtotal</p>
+          <p>({totalQuantity} items): ${totalCost}</p>
+        </div>
+        <div>
+          <p>Shipping</p>
+          <p>Free</p>
+        </div>
+        <div>
+          <p>Estimated Sales Tax</p>
+          <p>TBD</p>
+        </div>
+        <hr />
+        <div>
+          <p>Your Estimated Total</p>
+          <p>${totalCost}</p>
+        </div>
+        <hr />
+        <button>Proceed to Checkout<div></div></button>
       </div>
     </div>
   );

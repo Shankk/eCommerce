@@ -1,23 +1,27 @@
 import PropTypes from 'prop-types'
+import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Dropdown , ValueInput } from './Utility';
+import 'src/components/style/Product.css'
 
-
-function PreviewCard({title, price, description, image}) {
+function PreviewCard({category,title, price, image}) {
     
     return (
-        <Link className="preview" to={"/shop/" + title}>
-            <img src={image} alt="product image" />
-            <div className="product-info">
-                <p>{title}</p>
-                <p>{description}</p>
-                <p>${price}</p>
+        <Link className="preview" to={"/shop/" + category + "/" + title}>
+            <div className="preview-image">
+                <img src={image} alt="product image" />
+            </div>
+            <div className="preview-info">
+                <p className='price'>${price}</p>
+                <p className='title'>{title}</p>
             </div>
         </Link>
     );
 }
 
 PreviewCard.propTypes = {
+    category: PropTypes.string,
     title: PropTypes.string,
     price: PropTypes.number,
     description: PropTypes.string,
@@ -31,25 +35,65 @@ PreviewCard.defaultProps = {
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
 }
 
-function ProductCard({title, price, description, image , addToCart}) {
+function ProductCard({category, title, price, description, image, addToCart}) {
+    const [size, setSize] = useState()
     const [quantity, setQuantity] = useState(1)
-
+    const navigate = useNavigate();
+    const amount = [
+        {label:"1", value:1},
+        {label:"2", value:2},
+        {label:"3", value:3},
+        {label:"4", value:4},
+        {label:"5", value:5}
+    ]
+    const assignSize = (value) => {
+        setSize(value)
+    }
+    const BuyProductNow = () => {
+        addToCart(quantity)
+        navigate("/cart")
+    }
     return (
         <div className="product">
-            <img src={image} alt="product image" />
-            <div className="product-info">
-                <p>{title}</p>
-                <p>{description}</p>
-                <p>${price}</p>
-                <span>Quantity<input type="number" placeholder='1' min={1} max={10} value={quantity}
-                onChange={(event) => setQuantity(event.target.value)}/></span>
-                <button onClick={() => addToCart(quantity)}>Add to Cart</button>
+            <div className="product-image">
+                <img src={image} alt="product image" />
             </div>
+            <div className="product-info">
+                <div className='desc'>
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                    <p>${price}</p>
+                </div>
+                <hr />
+                <div className='options'>
+                    {category != "electronics" ? (
+                        <>
+                            <p className='p-title'>Size:{size}</p>
+                            <div>
+                                <button className='p-button' onClick={() => assignSize("XS")}>XS</button>
+                                <button className='p-button' onClick={() => assignSize("S")}>S</button>
+                                <button className='p-button' onClick={() => assignSize("M")}>M</button>
+                                <button className='p-button' onClick={() => assignSize("L")}>L</button>
+                                <button className='p-button' onClick={() => assignSize("XL")}>XL</button>
+                            </div>
+                            <hr />
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                    <Dropdown label={'Quantity'} options={amount} value={quantity.toString()} onChange={(event) => setQuantity(event.target.value)}></Dropdown>
+                </div>
+                <hr />
+                <button className='product-button' id='buy' onClick={() => BuyProductNow()}>Buy Now <div></div></button>
+                <button className='product-button' id='add' onClick={() => addToCart(quantity)}>Add to Cart <div></div></button>
+            </div>
+        
         </div>
     );
 }
   
 ProductCard.propTypes = {
+    category: PropTypes.string,
     title: PropTypes.string,
     price: PropTypes.number,
     description: PropTypes.string,
@@ -64,17 +108,22 @@ ProductCard.defaultProps = {
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
 }
 
-function CartCard({title, price, description, image, children, remove}) {
-
+function CartCard({title, price, image, amount, update, remove}) {
     return (
-        <div className="product">
-            <img src={image} alt="product image" />
-            <div className="product-info">
-                <p>{title}</p>
-                <p>{description}</p>
-                <p>${price}</p>
-                {children}
-                <button onClick={remove}>Remove</button>
+        <div className="cart-product">
+            <div className="cart-product-image">
+                <img src={image} alt="product image" />
+            </div>
+            <div className="cart-product-info">
+                <div className='left'>
+                    <p>{title}</p>
+                </div>
+                <div className='right'>
+                    <p>${(amount*price)}</p>
+                    <p>{amount}x ${price}</p>
+                    <ValueInput value={amount} setValue={update} min={1} max={10}></ValueInput>
+                    <button onClick={remove}>Remove</button>
+                </div>
             </div>
         </div>
     );
@@ -85,7 +134,9 @@ CartCard.propTypes = {
     price: PropTypes.number,
     description: PropTypes.string,
     image: PropTypes.string,
+    amount: PropTypes.number,
     children: PropTypes.node,
+    update: PropTypes.func,
     remove: PropTypes.func
 }
 

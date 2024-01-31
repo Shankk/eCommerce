@@ -55,7 +55,7 @@ const Cart = ({cartList, setCartList}) => {
         {cartList.length > 0 && cartList.map((item,i) =>{
           return (
             <>
-              <CartCard key={i} title={item.title} price={item.price} image={item.image} amount={item.quantity}
+              <CartCard key={i} title={item.title} price={item.price} image={item.image} quantity={item.quantity}
               update={(quantity) => UpdateQuantity(item,quantity)} remove={() => RemoveFromCart(item)}>   
               </CartCard>
               <hr />

@@ -33,6 +33,12 @@ function Default({productList}) {
 
     return (
         <>
+            <div className="front-cover">
+                <div className="image"></div>
+                <div className="banner"></div>
+                <p>Simplicity. Bold. Stylish.</p>
+                <Link className="nav-product-button" id="cover-button" to="/shop/all">SHOP NOW</Link>
+            </div>
             <div className="category-container">
                 <div className="product-line-header">
                     <Link className="nav-product-button" to="/shop/all">BESTSELLERS</Link>

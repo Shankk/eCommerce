@@ -32,31 +32,28 @@ Dropdown.propTypes = {
 }
 
 function ValueInput ({value, setValue, min, max}) {
-  const [quantity, setQuantity] = useState(value)
+  let tempValue = value
 
-  if(quantity > max) {setQuantity(10)}
-  else if (quantity < min){setQuantity(1)}
+  if(tempValue > max) {tempValue = 10}
+  else if (tempValue < min){tempValue = 1}
 
   const increment = () => {
-    if(quantity < max) {
-        setQuantity(quantity+1)
-        setValue(quantity+1)
+    if(tempValue < max) {
+        setValue(tempValue+1)
     }
   }
   const decrement = () => {
-    if(quantity > min) {
-        setQuantity(quantity-1)
-        setValue(quantity-1)
+    if(tempValue > min) {
+      setValue(tempValue-1)
     }
-    
   }
 
 
   return(
     <div className='valueInput'>
       <button onClick={decrement}>-</button>
-      <input type="number" placeholder='1' min={min} max={max} value={quantity}
-        onChange={(event) => setQuantity(event.target.value)}/>
+      <input type="number" min={min} max={max} value={tempValue}
+        onChange={(event) => tempValue = event.target.value}/>
       <button onClick={increment}>+</button>
     </div>
   )

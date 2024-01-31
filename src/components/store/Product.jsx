@@ -108,7 +108,9 @@ ProductCard.defaultProps = {
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
 }
 
-function CartCard({title, price, image, amount, update, remove}) {
+function CartCard({title, price, image, quantity, update, remove}) {
+    
+
     return (
         <div className="cart-product">
             <div className="cart-product-image">
@@ -119,9 +121,9 @@ function CartCard({title, price, image, amount, update, remove}) {
                     <p>{title}</p>
                 </div>
                 <div className='right'>
-                    <p>${(amount*price)}</p>
-                    <p>{amount}x ${price}</p>
-                    <ValueInput value={amount} setValue={update} min={1} max={10}></ValueInput>
+                    <p>${(quantity*price)}</p>
+                    <p>{quantity}x ${price}</p>
+                    <ValueInput value={quantity} setValue={update} min={1} max={10}></ValueInput>
                     <button onClick={remove}>Remove</button>
                 </div>
             </div>
@@ -134,7 +136,7 @@ CartCard.propTypes = {
     price: PropTypes.number,
     description: PropTypes.string,
     image: PropTypes.string,
-    amount: PropTypes.number,
+    quantity: PropTypes.number,
     children: PropTypes.node,
     update: PropTypes.func,
     remove: PropTypes.func

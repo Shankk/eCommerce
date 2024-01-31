@@ -68,7 +68,7 @@ function Homepage() {
                     <Link className="nav-header" to="/shop/jewelery">JEWELERY</Link>
                     {/* <Link className="navItem" to="/shop/electronics">ELECTRONICS</Link> */}
                 </nav>
-                <Link className="navItem" to="/cart">CART</Link>
+                <Link className="nav-header" to="/cart">CART</Link>
             </div>
             <div className="content">
                 {name === "shop" ? (

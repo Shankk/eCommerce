@@ -34,7 +34,7 @@ function Default({productList}) {
     return (
         <>
             <div className="front-cover">
-                <div className="image"></div>
+                <img className="image" src="blackandwhiteroses.png" alt="Front Page Cover image" />
                 <div className="banner"></div>
                 <p>Simplicity. Bold. Stylish.</p>
                 <Link className="nav-product-button" id="cover-button" to="/shop/all">SHOP NOW</Link>

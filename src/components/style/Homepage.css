@@ -1,15 +1,15 @@
-#root {
-  margin: 0 auto;
-  padding: 0rem;
-  width: 100%;
-  height: 100%;
+:root {
+  --logo-size: clamp(10px, 5vw, 60px);
+  --header-size: clamp(0.6em, 3vw, 3em);
+  --font-size: clamp(0.4em, 1vw, 1.5em);
+  --footer-size: clamp(0.2em, 1vw, 1em);
+  --footer-image-width: clamp(50px, 30vw, 500px);
 }
 
 .page {
   min-height: 1200px;
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
 }
 
 .header-section {
@@ -18,13 +18,14 @@
   width: 100%;
   height: 80px;
   border-bottom: 4px solid;
-  box-shadow: 0px 0px 10px 1px black;
+  box-shadow: 0px 0px 0px 0px black;
+  top: 0px;
+  left: 0px;
 
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: center;
-  padding: 0px 0px;
 
   z-index: 99;
 }
@@ -51,14 +52,14 @@
 .site-title {
   position: relative;
   font-family: GreatVibes;
-  height: 60px;
-  font-size: 36px;
+  height: var(--logo-size);
+  font-size: var(--header-size);
   letter-spacing: 12px;
   line-height: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 25px;
+  margin-top: 2%;
 }
 .site-title:hover > #logo{
   height: 60px;
@@ -67,7 +68,7 @@
   align-self: center;
   position: absolute;
   height: 0px;
-  width: 60px;
+  width: auto;
   left: 45%;
   bottom:20%;
   display: flex;
@@ -78,7 +79,7 @@
 #logo > img {
   all: unset;
   width: auto;
-  height: 60px;
+  height: var(--logo-size);
 }
 #home-button {
   all: unset;
@@ -89,20 +90,20 @@
 }
 
 nav {
-  min-height: 30px;
+  min-height: 20px;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
-  gap:32px;
+  column-gap:32px;
 }
 
 .nav-header {
   all: unset;
   text-align: center;
   width: auto;
-  font-size: 18px;
-  letter-spacing: 8px;
+  font-size: var(--font-size);
+  letter-spacing: 4px;
   border-bottom: 2px solid transparent;
   transition: all 0.25s;
 }
@@ -118,7 +119,7 @@ nav {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: 50px;
-  flex: 1 0 100%;
+  flex: auto;
 }
 
 input {
@@ -129,7 +130,7 @@ input {
 .footer {
   width: 100%;
   height: auto;
-  font-size: 14px;
+  font-size: var(--footer-size);
   color: white;
   background-color: black;
 
@@ -140,14 +141,14 @@ input {
   margin: 0px;
 }
 .top {
-  height: 300px;
+  height: auto;
   display: flex;
   flex-flow: row nowrap;
 }
 .top > div {
   display: flex;
   flex-flow: column nowrap;
-  margin: 0px 12px;
+  margin: 0px 8px;
   gap: 8px;
   flex: 1;
 }
@@ -162,7 +163,7 @@ input {
 }
 .subscribe > button {
   outline: white solid 1px ;
-  font-size: 18px;
+  font-size: var(--font-size);
   font-weight: bold;
   letter-spacing: 4px;
 }
@@ -194,7 +195,8 @@ input {
 }
 .top > img {
   all: unset;
-  max-width: 500px;
+  width: var(--footer-image-width);
+  height: auto;
 }
 .bottom {
   display: flex;
@@ -225,21 +227,21 @@ input {
   position: relative;
   font-family: GreatVibes;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .front-cover > .image {
+  max-height: 1000px;
   width: 100%;
-  height: 100%;
   object-fit: cover;
   filter: blur(4px);
   filter:drop-shadow(0);
 }
 .front-cover > .banner {
   width: 100%;
-  height: 200px;
+  height: 10%;
   position: absolute;
   background-color: whitesmoke;
   opacity: 0.6;
@@ -249,10 +251,11 @@ input {
   position: absolute;
   width: 100%;
   color: black;
-  font-size: 72px;
+  font-size: var(--header-size);
   font-weight: bold;
   letter-spacing: 8px;
   text-align: center;
+  padding: 0px;
 }
 #cover-button {
   font-family: FiraMono;
@@ -322,7 +325,7 @@ input {
 
 .nav-product-button {
   all: unset;
-  font-size: 24px;
+  font-size: var(--font-size);
   letter-spacing: 8px;
   border-bottom: 2px solid transparent;
   transition: all 0.25s;
@@ -333,4 +336,25 @@ input {
   border-bottom: 2px solid black;
   font-weight: bold;
   cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .site-title {
+    width: 100px;
+    letter-spacing: 4px;
+  }
+  nav {
+    width: 125px;
+    column-gap: 4px;
+  }
+  .nav-footer {
+    padding: 0px 4px;
+  }
+  .top > div {
+    margin: 0px 4px;
+  }
+  .socials > a > img{
+    width: 8px;
+    height: auto;
+  }
 }

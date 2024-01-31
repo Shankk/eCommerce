@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: flex-start;
     gap: 20px;
+    font-size: var(--font-size);
   }
   
   .items {
@@ -39,7 +40,8 @@
   }
   .checkout > button {
     width: 100%;
-    height: 50px;
+    height: auto;
+    padding: 4%;
     font-weight: bold;
   }
   .checkout > button > div {

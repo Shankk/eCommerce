@@ -5,7 +5,8 @@
   src: local('GreatVibes'), url(./fonts//GreatVibes-Regular.ttf), format('opentype');
 }
 
-:root {
+#root {
+  align-self: center;
   font-family: FiraMono, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -18,6 +19,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
 }
 
 a {
@@ -26,26 +28,28 @@ a {
 }
 
 body {
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+p {
+  font-size: var(--font-size);
 }
 
 hr {
+  border-left: 0px;
+  border-right: 0px;
   width: 100%;
 }
 
 button {
   border: 0px solid transparent;
   padding: 0.4em 1em;
-  font-size: 1em;
+  font-size: var(--font-size);
   font-family: inherit;
   background-color: black;
   color: white;

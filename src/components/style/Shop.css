@@ -53,3 +53,12 @@
     column-gap: 3%;
     row-gap: 2vh;
   }
+
+  @media screen and (max-width: 500px) {
+    .searchSection {
+      flex-flow: column nowrap;
+    }
+    .search {
+      min-width: 150px;
+    }
+  }

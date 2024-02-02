@@ -67,3 +67,9 @@ button:focus-visible {
   transform: scale(0.95);
   outline: 4px auto black;
 }
+
+@media screen and (max-width: 500px) {
+  button {
+    padding: 0.4em;
+  }
+}

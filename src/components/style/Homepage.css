@@ -291,7 +291,7 @@ input {
 
 .product-line {
   min-height: 200px;
-  height: 65vh;
+  height: clamp(30vh, 50vw,65vh);
   width: 90%;
   display: flex;
   flex-flow: row nowrap;
@@ -342,17 +342,52 @@ input {
 }
 
 @media screen and (max-width: 500px) {
+  :root {
+    --logo-size: 40px;
+    --header-size: 1.5em;
+    --banner-size: 2em;
+    --global-font-size: 1em;
+    --footer-size: 0.8em;
+    --footer-image-width: 200px;
+    --button-font-size: 1em;
+  }
+
+  .header-section {
+    flex-flow: column nowrap;
+  }
   nav {
-    width: 125px;
+    width: 100%;
     column-gap: 4px;
   }
+  .front-cover > .banner {
+    height: 30%;
+  }
+  .product-line {
+    height: 65vh;
+    padding: 8px 16px;
+  }
+
   .nav-footer {
     padding: 0px 4px;
   }
   .top , .bottom {
     flex-flow: column nowrap;
   }
+  .top > div {
+    margin: 8px;
+  }
   .top > img {
     width: 100%;
-  };
+  }
+  .socials > a > img {
+    width: 32px;
+  }
+  .bottom {
+    gap: 0px;
+    height: 100px;
+  }
+  .vl {
+    visibility: hidden;
+  }
+
 }

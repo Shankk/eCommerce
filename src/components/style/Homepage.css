@@ -1,9 +1,11 @@
 :root {
-  --logo-size: clamp(10px, 5vw, 60px);
-  --header-size: clamp(0.6em, 3vw, 3em);
-  --font-size: clamp(0.4em, 1vw, 1.5em);
-  --footer-size: clamp(0.2em, 1vw, 1em);
+  --logo-size: clamp(50px, 5vw, 80px);
+  --header-size: clamp(1.5em, 3vw, 3em);
+  --banner-size: clamp(2em, 4vw, 6em);
+  --global-font-size: clamp(1em, 2vw, 1.5em);
+  --footer-size: clamp(0.8em, 1vw, 1em);
   --footer-image-width: clamp(50px, 30vw, 500px);
+  --button-font-size: clamp(0.6em, 100%, 1em);
 }
 
 .page {
@@ -16,7 +18,7 @@
   color: black;
   background-color: white;
   width: 100%;
-  height: 80px;
+  height: 100px;
   border-bottom: 4px solid;
   box-shadow: 0px 0px 0px 0px black;
   top: 0px;
@@ -50,27 +52,26 @@
   }
 }
 .site-title {
+  min-width: 250px;
   position: relative;
   font-family: GreatVibes;
   height: var(--logo-size);
   font-size: var(--header-size);
-  letter-spacing: 12px;
+  letter-spacing: 4px;
   line-height: 0;
+
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 2%;
+  align-items:center;
+  gap: 40px;
 }
 .site-title:hover > #logo{
-  height: 60px;
+  height: 80px;
 }
 #logo {
-  align-self: center;
-  position: absolute;
+  align-self: end;
   height: 0px;
   width: auto;
-  left: 45%;
-  bottom:20%;
   display: flex;
   align-items: end;
   transition: all 0.25s ease-in-out;
@@ -82,7 +83,6 @@
   height: var(--logo-size);
 }
 #home-button {
-  all: unset;
   transition: all 0.25s ease-in;
 }
 #home-button:hover {
@@ -102,7 +102,7 @@ nav {
   all: unset;
   text-align: center;
   width: auto;
-  font-size: var(--font-size);
+  font-size: var(--global-font-size);
   letter-spacing: 4px;
   border-bottom: 2px solid transparent;
   transition: all 0.25s;
@@ -115,10 +115,12 @@ nav {
 
 .content {
   background-color: whitesmoke;
+  min-height: 100vh;
   width: 100%;
+  margin-bottom: 50px;
+
   display: flex;
   flex-flow: column nowrap;
-  margin-bottom: 50px;
   flex: auto;
 }
 
@@ -152,6 +154,13 @@ input {
   gap: 8px;
   flex: 1;
 }
+
+.top > img {
+  all: unset;
+  width: var(--footer-image-width);
+  height: auto;
+}
+
 .subscribe > input {
   all: unset;
   color: white;
@@ -163,7 +172,7 @@ input {
 }
 .subscribe > button {
   outline: white solid 1px ;
-  font-size: var(--font-size);
+  font-size: var(--global-font-size);
   font-weight: bold;
   letter-spacing: 4px;
 }
@@ -172,6 +181,9 @@ input {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+.socials > a > img {
+  width: 64px;
 }
 
 .nav-footer {
@@ -188,16 +200,7 @@ input {
   cursor: pointer;
 }
 
-.top > p {
-  display: -webkit-box;
-  -webkit-line-clamp: 0;
-  -webkit-box-orient: vertical;
-}
-.top > img {
-  all: unset;
-  width: var(--footer-image-width);
-  height: auto;
-}
+
 .bottom {
   display: flex;
   justify-content: center;
@@ -241,7 +244,7 @@ input {
 }
 .front-cover > .banner {
   width: 100%;
-  height: 10%;
+  height: 15%;
   position: absolute;
   background-color: whitesmoke;
   opacity: 0.6;
@@ -251,7 +254,7 @@ input {
   position: absolute;
   width: 100%;
   color: black;
-  font-size: var(--header-size);
+  font-size: var(--banner-size);
   font-weight: bold;
   letter-spacing: 8px;
   text-align: center;
@@ -264,7 +267,7 @@ input {
 
   background-color: black;
   color: white;
-  padding: 8px 24px;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -277,17 +280,6 @@ input {
   margin-top: 4em;
 }
 
-.product-line > button {
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
 .scroll-left {
   top: 80%;
   left: 8%;
@@ -298,14 +290,16 @@ input {
 }
 
 .product-line {
-  height: clamp(200px, 100%, var(--max-height));
+  min-height: 200px;
+  height: 65vh;
   width: 90%;
   display: flex;
   flex-flow: row nowrap;
-  overflow-x: hidden;
+  align-items: center;
+  overflow-x: scroll;
   scroll-behavior: smooth;
   gap: 12px;
-  padding: 8px 16px;
+  padding: 0px 16px;
   margin-top: 8px;
   border-left: 2px solid black;
   border-right: 2px solid black;
@@ -322,10 +316,19 @@ input {
   height: 0px;
   align-self: center;
 }
+.product-line > button {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 .nav-product-button {
   all: unset;
-  font-size: var(--font-size);
+  font-size: var(--global-font-size);
   letter-spacing: 8px;
   border-bottom: 2px solid transparent;
   transition: all 0.25s;
@@ -339,10 +342,6 @@ input {
 }
 
 @media screen and (max-width: 500px) {
-  .site-title {
-    width: 100px;
-    letter-spacing: 4px;
-  }
   nav {
     width: 125px;
     column-gap: 4px;
@@ -350,11 +349,10 @@ input {
   .nav-footer {
     padding: 0px 4px;
   }
-  .top > div {
-    margin: 0px 4px;
+  .top , .bottom {
+    flex-flow: column nowrap;
   }
-  .socials > a > img{
-    width: 8px;
-    height: auto;
-  }
+  .top > img {
+    width: 100%;
+  };
 }

@@ -36,21 +36,23 @@ body {
   min-height: 100vh;
 }
 
-p {
-  font-size: var(--font-size);
-}
-
 hr {
   border-left: 0px;
   border-right: 0px;
   width: 100%;
 }
 
+select {
+  min-width: 100px;
+  text-align: center;
+  font-size: 18px;
+}
+
 button {
   border: 0px solid transparent;
-  padding: 0.4em 1em;
-  font-size: var(--font-size);
   font-family: inherit;
+  font-size: var(--button-font-size);
+  padding: 1rem;
   background-color: black;
   color: white;
   cursor: pointer;
